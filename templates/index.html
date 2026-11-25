@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillTrack | Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">`r`n</head>
+<body>
+
+    <header>
+        <h2>SkillTrack</h2>
+        <nav>
+            <a href="/">Home</a>`r`n    
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+        </nav>
+    </header>
+
+    <main class="hero" id="about">
+        <p class="tag">EMPLOYEE SKILL MATRIX</p>
+        <h1>Empowering Our People<br>with the Right Skills</h1>
+        <p>Track. Train. Assess. Certify.</p>
+        <p>Manage employee skills through five levels of development.</p>
+        <a class="btn" href="#features">Explore Features</a>
+    </main>
+
+    <section id="features">
+        <h2>Our Features</h2>
+        <div class="cards">
+            <article>👥<h3>Employees</h3><p>Manage employee profiles.</p></article>
+            <article>📊<h3>Skill Matrix</h3><p>Track all five skill levels.</p></article>
+            <article>🎓<h3>Training</h3><p>Manage training and assessments.</p></article>
+            <article>🏆<h3>Certificates</h3><p>Generate certificates after approval.</p></article>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

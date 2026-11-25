@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillTrack | Employees</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .employee-page { max-width: 960px; margin: 40px auto; padding: 0 20px; }
+        .employee-form, .employee-table { background: white; padding: 24px; border-radius: 12px; margin: 20px 0; }
+        .employee-form label { display: block; margin: 14px 0 6px; font-weight: bold; }
+        .employee-form input { width: 100%; padding: 11px; border: 1px solid #b8c5d6; border-radius: 6px; }
+        .employee-form button { margin-top: 18px; border: 0; cursor: pointer; }
+        .employee-table { width: 100%; border-collapse: collapse; }
+        .employee-table th, .employee-table td { padding: 12px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+        .notice { padding: 12px; background: #e7f6ec; border-radius: 6px; }
+        .error { color: #a32020; }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>SkillTrack</h2>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('employees') }}">Employees</a>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        </nav>
+    </header>
+
+    <main class="employee-page">
+        <h1>Employees</h1>
+        <p>Employee details add pannunga; save aana details keezha list-la varum.</p>
+
+        {% with messages = get_flashed_messages() %}
+          {% for message in messages %}
+            <p class="notice">{{ message }}</p>
+          {% endfor %}
+        {% endwith %}
+
+        {% if error %}
+          <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <form class="employee-form" method="post">
+            <h2>Add Employee</h2>
+
+            <label for="employee_id">Employee ID</label>
+            <input id="employee_id" name="employee_id"
+                   value="{{ form_values.employee_id }}" required>
+
+            <label for="name">Name</label>
+            <input id="name" name="name"
+                   value="{{ form_values.name }}" required>
+
+            <label for="department">Department</label>
+            <input id="department" name="department"
+                   value="{{ form_values.department }}" required>
+
+            <button class="btn" type="submit">Save Employee</button>
+        </form>
+
+        <section>
+            <h2>Saved Employees ({{ employees|length }})</h2>
+
+            {% if employees %}
+            <table class="employee-table">
+                <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Name</th>
+                        <th>Department</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for employee in employees %}
+                    <tr>
+                        <td>{{ employee.employee_id }}</td>
+                        <td>{{ employee.name }}</td>
+                        <td>{{ employee.department }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>Innum employee add pannala.</p>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>

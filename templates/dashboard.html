@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillTrack | Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h2>SkillTrack</h2>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('employees') }}">Employees</a>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        </nav>
+    </header>
+
+    <main class="dashboard">
+        <h1>Dashboard</h1>
+        <p>Employee Skill Management Overview</p>
+        <p><a class="btn" href="{{ url_for('employees') }}">Add / View Employees</a></p>
+
+        <section class="dashboard-cards">
+            <article class="stat-card">
+                <h3>Total Employees</h3>
+                <h1>{{ employee_count }}</h1>
+                <p>Database-la save aana employees</p>
+            </article>
+            <article class="stat-card">
+                <h3>Skills Completed</h3><h1>85</h1><p>All levels completed</p>
+            </article>
+            <article class="stat-card">
+                <h3>Pending Assessments</h3><h1>24</h1><p>Awaiting evaluation</p>
+            </article>
+            <article class="stat-card">
+                <h3>Certificates Issued</h3><h1>42</h1><p>Successfully certified</p>
+            </article>
+        </section>
+
+        <section class="dashboard-panel">
+            <h2>Employee Skill Progress</h2>
+            <p>Overall skill development overview</p>
+            {% for level, percent in [(1, 90), (2, 75), (3, 55), (4, 35), (5, 20)] %}
+            <div class="progress-item">
+                <span>Level {{ level }}</span>
+                <progress value="{{ percent }}" max="100"></progress>
+                <span>{{ percent }}%</span>
+            </div>
+            {% endfor %}
+        </section>
+        <p class="demo-note">Skills, assessment, certificate details are demo data.</p>
+    </main>
+</body>
+</html>
+
